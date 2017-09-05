@@ -12,7 +12,7 @@ import br.ufrn.info.bpm.progressao.ProgressaoProcAPI;
 public class DeployModel {
 
 	public static void main(String[] args) throws FileNotFoundException {
-		String model = "progressao-funcional.bpmn"; // COLOCAR AQUI O CAMINHO DO ARQUIVO .BPMN
+		String model = "diagramas/camunda/fiscalizacao_contratos.bpmn"; // COLOCAR AQUI O CAMINHO DO ARQUIVO .BPMN
 		InputStream is = new FileInputStream(new File(model));
 		Deployment d = ProgressaoProcAPI.getInstance().deployDiagram(is);
 	}

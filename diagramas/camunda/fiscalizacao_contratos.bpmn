@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_1" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="1.9.0">
   <bpmn:collaboration id="Collaboration_0r92499">
-    <bpmn:participant id="Participant_16l6wwd" processRef="Process_1" />
+    <bpmn:participant id="Participant_16l6wwd" name="Fiscalização Contrato" processRef="fiscalizacao_contrato" />
   </bpmn:collaboration>
-  <bpmn:process id="Process_1" isExecutable="true">
+  <bpmn:process id="fiscalizacao_contrato" name="Fiscalização Contrato" isExecutable="true">
     <bpmn:laneSet>
       <bpmn:lane id="Lane_1gz4cvo" name="Setor de Contratos">
         <bpmn:flowNodeRef>ENVIAR_MEMORANDO</bpmn:flowNodeRef>
@@ -19,7 +19,7 @@
       </bpmn:lane>
       <bpmn:lane id="Lane_0hcbfp8" name="Contratada">
         <bpmn:flowNodeRef>RECEBER_PRONUNCIAMENTO</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>ExclusiveGateway_097g4t5</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>CONDICAO</bpmn:flowNodeRef>
       </bpmn:lane>
       <bpmn:lane id="Lane_19yn6d3" name="Setor Jurídico">
         <bpmn:flowNodeRef>TOMAR_PROVIDENCIAS</bpmn:flowNodeRef>
@@ -84,21 +84,25 @@
       <bpmn:incoming>SequenceFlow_132zfcs</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_1qcozyt</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_1qcozyt" name="Empresa se pronunciou?&#10;&#10;" sourceRef="RECEBER_PRONUNCIAMENTO" targetRef="ExclusiveGateway_097g4t5" />
-    <bpmn:exclusiveGateway id="ExclusiveGateway_097g4t5">
+    <bpmn:sequenceFlow id="SequenceFlow_1qcozyt" name="Empresa se pronunciou?&#10;&#10;" sourceRef="RECEBER_PRONUNCIAMENTO" targetRef="CONDICAO" />
+    <bpmn:exclusiveGateway id="CONDICAO">
       <bpmn:incoming>SequenceFlow_1qcozyt</bpmn:incoming>
-      <bpmn:outgoing>SequenceFlow_1gfkwdu</bpmn:outgoing>
-      <bpmn:outgoing>SequenceFlow_0h5y209</bpmn:outgoing>
+      <bpmn:outgoing>CONDICAO_SIM</bpmn:outgoing>
+      <bpmn:outgoing>CONDICAO_NAO</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:endEvent id="EndEvent_08qdiiv">
-      <bpmn:incoming>SequenceFlow_1gfkwdu</bpmn:incoming>
+      <bpmn:incoming>CONDICAO_SIM</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="SequenceFlow_1gfkwdu" name="sim" sourceRef="ExclusiveGateway_097g4t5" targetRef="EndEvent_08qdiiv" />
+    <bpmn:sequenceFlow id="CONDICAO_SIM" name="sim" sourceRef="CONDICAO" targetRef="EndEvent_08qdiiv">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">true</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:task id="TOMAR_PROVIDENCIAS" name="Tomar Providências">
-      <bpmn:incoming>SequenceFlow_0h5y209</bpmn:incoming>
+      <bpmn:incoming>CONDICAO_NAO</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cofh0a</bpmn:outgoing>
     </bpmn:task>
-    <bpmn:sequenceFlow id="SequenceFlow_0h5y209" name="não" sourceRef="ExclusiveGateway_097g4t5" targetRef="TOMAR_PROVIDENCIAS" />
+    <bpmn:sequenceFlow id="CONDICAO_NAO" name="não" sourceRef="CONDICAO" targetRef="TOMAR_PROVIDENCIAS">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">false</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_1h691gp">
       <bpmn:incoming>SequenceFlow_0cofh0a</bpmn:incoming>
     </bpmn:endEvent>
@@ -241,7 +245,7 @@
           <dc:Bounds x="1211" y="291.5" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="ExclusiveGateway_097g4t5_di" bpmnElement="ExclusiveGateway_097g4t5" isMarkerVisible="true">
+      <bpmndi:BPMNShape id="ExclusiveGateway_097g4t5_di" bpmnElement="CONDICAO" isMarkerVisible="true">
         <dc:Bounds x="990.7487373737374" y="436" width="50" height="50" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="1015.7487373737374" y="490" width="0" height="12" />
@@ -260,7 +264,7 @@
           <dc:Bounds x="1085.7487373737374" y="196" width="0" height="12" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_1gfkwdu_di" bpmnElement="SequenceFlow_1gfkwdu">
+      <bpmndi:BPMNEdge id="SequenceFlow_1gfkwdu_di" bpmnElement="CONDICAO_SIM">
         <di:waypoint xsi:type="dc:Point" x="1024" y="444" />
         <di:waypoint xsi:type="dc:Point" x="1086" y="304" />
         <di:waypoint xsi:type="dc:Point" x="1086" y="192" />
@@ -271,7 +275,7 @@
       <bpmndi:BPMNShape id="Task_14db7pk_di" bpmnElement="TOMAR_PROVIDENCIAS">
         <dc:Bounds x="966" y="572.2121212121212" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="SequenceFlow_0h5y209_di" bpmnElement="SequenceFlow_0h5y209">
+      <bpmndi:BPMNEdge id="SequenceFlow_0h5y209_di" bpmnElement="CONDICAO_NAO">
         <di:waypoint xsi:type="dc:Point" x="1016" y="486" />
         <di:waypoint xsi:type="dc:Point" x="1016" y="572" />
         <bpmndi:BPMNLabel>

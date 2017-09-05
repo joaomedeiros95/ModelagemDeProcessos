@@ -25,20 +25,20 @@ public class MainProgressao {
 
 		
 		// Ao submeter RID
-		api.completeTask(FiscalizacaoContratos.ORGANIZAR_PEDIDO, idPedidoProgressao);
+//		api.completeTask(FiscalizacaoContratos.ORGANIZAR_PEDIDO, idPedidoProgressao);
 		
 		// startProcessInstance(idProjeto);
 
 		// Chefia ao avaliar  RID
 		progressao.setParecerOk(true);
-		api.completeTask(FiscalizacaoContratos.EMITIR_PARECER_CHEFIA, idPedidoProgressao);
+//		api.completeTask(FiscalizacaoContratos.EMITIR_PARECER_CHEFIA, idPedidoProgressao);
 		
 		// Relator ao avaliar progressao
 		progressao.setParecerRelatorOk(true);
-		api.completeTask(FiscalizacaoContratos.EMITIR_PARECER_RELATOR, idPedidoProgressao);
+//		api.completeTask(FiscalizacaoContratos.EMITIR_PARECER_RELATOR, idPedidoProgressao);
 
 		// Após relator autenticar
-		api.completeTask(FiscalizacaoContratos.ASSINAR_PARECER, idPedidoProgressao);
+//		api.completeTask(FiscalizacaoContratos.ASSINAR_PARECER, idPedidoProgressao);
 		
 		System.out.println("fim");
 	}
