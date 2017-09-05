@@ -2,7 +2,7 @@ package br.ufrn.info.bpm.progressao;
 
 import br.ufrn.info.bpm.api.GenericProcessAPI;
 
-public class ProgressaoProcAPI extends GenericProcessAPI<TarefaProgressao> {
+public class ProgressaoProcAPI extends GenericProcessAPI<FiscalizacaoContratos> {
 
 	private static ProgressaoProcAPI instance;
 	
