@@ -7,11 +7,15 @@ public class GatewayProgressao extends GatewayObject<Progressao> {
 	public GatewayProgressao(Progressao progressao) {
 		super(progressao);
 	}
+
+	public boolean empresaPronunciou() {
+		return false;
+	}
 	
 	public boolean isParecerOk() {
 		Progressao p = ProgressaoDAO.getInstance().procurarProgressao(getSigId());
 		if (p.getParecerOk() == null) {
-			throw new RuntimeException("Informação não disponível: getParecerOk()");
+			throw new RuntimeException("Informaï¿½ï¿½o nï¿½o disponï¿½vel: getParecerOk()");
 		} else {
 			return p.getParecerOk().booleanValue();
 		}
@@ -20,7 +24,7 @@ public class GatewayProgressao extends GatewayObject<Progressao> {
 	public boolean isParecerRelatorOk() {
 		Progressao p = ProgressaoDAO.getInstance().procurarProgressao(getSigId());
 		if (p.getParecerRelatorOk() == null) {
-			throw new RuntimeException("Informação não disponível: getParecerRelatorOk()");
+			throw new RuntimeException("Informaï¿½ï¿½o nï¿½o disponï¿½vel: getParecerRelatorOk()");
 		} else {
 			return p.getParecerRelatorOk().booleanValue();
 		}

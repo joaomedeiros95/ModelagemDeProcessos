@@ -94,14 +94,14 @@
       <bpmn:incoming>CONDICAO_SIM</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="CONDICAO_SIM" name="sim" sourceRef="CONDICAO" targetRef="EndEvent_08qdiiv">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">true</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${proc.empresaPronunciou()}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:task id="TOMAR_PROVIDENCIAS" name="Tomar Providências">
       <bpmn:incoming>CONDICAO_NAO</bpmn:incoming>
       <bpmn:outgoing>SequenceFlow_0cofh0a</bpmn:outgoing>
     </bpmn:task>
     <bpmn:sequenceFlow id="CONDICAO_NAO" name="não" sourceRef="CONDICAO" targetRef="TOMAR_PROVIDENCIAS">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">false</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!proc.empresaPronunciou()}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:endEvent id="EndEvent_1h691gp">
       <bpmn:incoming>SequenceFlow_0cofh0a</bpmn:incoming>

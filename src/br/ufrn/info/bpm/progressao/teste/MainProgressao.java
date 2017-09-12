@@ -10,7 +10,7 @@ public class MainProgressao {
 
 	// EXEMPLO DE USO
 	public static void main(String[] args) throws BPMIntegrityException {
-		long idPedidoProgressao = (long) (Math.random()*10000);
+		final long idPedidoProgressao = (long) (Math.random()*10000);
 		
 		Progressao progressao = new Progressao();
 		progressao.setId(idPedidoProgressao);
@@ -21,7 +21,7 @@ public class MainProgressao {
 
 		// EMITIR NOVO RID
 		api.startNewProcessInstance(idPedidoProgressao);
-//		api.startTask(TarefaProgressao.ORGANIZAR_PEDIDO, idPedidoProgressao);
+		api.startTask(FiscalizacaoContratos.ENVIAR_MEMORANDO, idPedidoProgressao);
 
 		
 		// Ao submeter RID
