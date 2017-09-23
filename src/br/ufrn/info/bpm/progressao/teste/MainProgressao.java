@@ -17,6 +17,8 @@ public class MainProgressao {
     private static Map<Integer, FiscalizacaoContratos> processos =
             new ConcurrentHashMap<>();
 
+    public static String hello = "hello";
+
     static {
         processos.put(1, FiscalizacaoContratos.ENVIAR_MEMORANDO);
         processos.put(2, FiscalizacaoContratos.ENVIAR_INFO_FISCAL);
