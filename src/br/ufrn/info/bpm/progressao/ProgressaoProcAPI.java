@@ -14,7 +14,7 @@ public class ProgressaoProcAPI extends GenericProcessAPI<FiscalizacaoContratos> 
 	}
 	
 	private ProgressaoProcAPI() {
-		super("fiscalizacao_contrato");
+			super("fiscalizacao_contrato");
 	}
 	
 	@Override

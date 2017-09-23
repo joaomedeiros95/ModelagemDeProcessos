@@ -12,29 +12,28 @@ public class MainProgressao {
 	public static void main(String[] args) throws BPMIntegrityException {
 		final long idPedidoProgressao = (long) (Math.random()*10000);
 		
-		Progressao progressao = new Progressao();
+		final Progressao progressao = new Progressao();
 		progressao.setId(idPedidoProgressao);
 		
 		ProgressaoDAO.getInstance().adicionarProgressao(progressao);
 
-		ProgressaoProcAPI api = ProgressaoProcAPI.getInstance();
+		final ProgressaoProcAPI api = ProgressaoProcAPI.getInstance();
 
 		// EMITIR NOVO RID
 		api.startNewProcessInstance(idPedidoProgressao);
 		api.startTask(FiscalizacaoContratos.ENVIAR_MEMORANDO, idPedidoProgressao);
 
-		
 		// Ao submeter RID
-//		api.completeTask(FiscalizacaoContratos.ORGANIZAR_PEDIDO, idPedidoProgressao);
+		api.completeTask(FiscalizacaoContratos.ENVIAR_MEMORANDO, idPedidoProgressao);
 		
 		// startProcessInstance(idProjeto);
 
 		// Chefia ao avaliar  RID
-		progressao.setParecerOk(true);
+//		progressao.setParecerOk(true);
 //		api.completeTask(FiscalizacaoContratos.EMITIR_PARECER_CHEFIA, idPedidoProgressao);
 		
 		// Relator ao avaliar progressao
-		progressao.setParecerRelatorOk(true);
+//		progressao.setParecerRelatorOk(true);
 //		api.completeTask(FiscalizacaoContratos.EMITIR_PARECER_RELATOR, idPedidoProgressao);
 
 		// Após relator autenticar
