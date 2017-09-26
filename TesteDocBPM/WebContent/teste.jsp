@@ -165,9 +165,14 @@ console.log(xhr.response);
   xhr.open('GET', 'fiscalizacao_contratos.bpmn', true);
   xhr.send(null);
 
-    <% final String str = MainProgressao.hello; %>
-	alert(<%=str%>);
- 
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "Your Rest URL Here", false);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    xhttp.send();
+    var response = JSON.parse(xhttp.responseText);
+    console.log(response);
+
+
  </script>
 
 <!-- 

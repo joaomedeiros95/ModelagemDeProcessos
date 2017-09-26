@@ -17,8 +17,6 @@ public class MainProgressao {
     private static Map<Integer, FiscalizacaoContratos> processos =
             new ConcurrentHashMap<>();
 
-    public static String hello = "hello";
-
     static {
         processos.put(1, FiscalizacaoContratos.ENVIAR_MEMORANDO);
         processos.put(2, FiscalizacaoContratos.ENVIAR_INFO_FISCAL);
@@ -30,8 +28,10 @@ public class MainProgressao {
         processos.put(8, FiscalizacaoContratos.TOMAR_PROVIDENCIAS);
     }
 
+    public FiscalizacaoContratos passoAtual;
+
     // EXEMPLO DE USO
-    public static void main(String[] args) throws BPMIntegrityException {
+    public void start() throws BPMIntegrityException {
 		final long idPedidoProgressao = (long) (Math.random() * 10000);
 
 		final Progressao progressao = new Progressao();
@@ -166,6 +166,8 @@ public class MainProgressao {
             } else {
                 System.out.printf("Opção não disponível, tente novamente");
             }
+
+            passoAtual = task;
         }
     }
 
