@@ -2,12 +2,10 @@ package br.ufrn.info.bpm.progressao.teste;
 
 import br.ufrn.info.bpm.api.BPMIntegrityException;
 import com.google.gson.Gson;
-import spark.Request;
-import spark.Response;
 import spark.ResponseTransformer;
-import spark.Route;
 
-import static spark.Spark.*;
+import static spark.Spark.after;
+import static spark.Spark.get;
 
 public class RESTServer {
 
